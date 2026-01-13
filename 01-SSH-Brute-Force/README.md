@@ -111,4 +111,7 @@ Screenshots of Splunk search results and detection output can be found in the `s
 ### Detection Logic
 ![Detection Logic](screenshots/05_detection_query_aggregation.png)
 
+### Detection Logic - rex
+![Detection Logic](screenshots/05_detection_query_aggregation_rex.png)
+
 
