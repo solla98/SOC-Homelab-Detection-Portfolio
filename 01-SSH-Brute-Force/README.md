@@ -97,16 +97,18 @@ The activity matches the expected behavior of an SSH brute force attack.
 Screenshots of Splunk search results and detection output can be found in the `screenshots/` directory.
 
 ### Attack Simulation
-![Attack Simulation] (screenshots/01_attack_simulation.png)
+![Attack Simulation](screenshots/01_attack_simulation.png)
 
 ### SSH Authentication Logs
-![Auth log] (screenshots/02_auth_log_failed_password.png)
+![Auth log](screenshots/02_auth_log_failed_password.png)
 
 ### Splunk Raw Events
-![Splunk Raw Events] (screenshots/03_splunk_raw_events.png)
+![Splunk Raw Events](screenshots/03_splunk_raw_events.png)
 
 ### Investigation Results
-![Investigation Query] (screenshots/04_investigation_query_results.png)
+![Investigation Query](screenshots/04_investigation_query_results.png)
 
 ### Detection Logic
-![Detection Logic] (screenshots/05_detection_query_aggregation.png)
+![Detection Logic](screenshots/05_detection_query_aggregation.png)
+
+
