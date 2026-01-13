@@ -1,1 +1,5 @@
 
+index=main "Failed password" "sshd"
+| bin _time span=1m
+| stats count by src_ip _time
+| where count >= 5
