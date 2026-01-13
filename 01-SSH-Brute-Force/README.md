@@ -119,8 +119,8 @@ Screenshots of Splunk search results and detection output can be found in the `s
 ### Splunk Raw Events
 ![Splunk Raw Events](screenshots/03_splunk_raw_events.png)
 
-### Investigation Results
-![Investigation Query](screenshots/04_investigation_query_results.png)
+### Investigation Results - rex
+![Investigation Query](screenshots/04_investigation_query_results_rex.png)
 
 ### Detection Logic
 ![Detection Logic](screenshots/05_detection_query_aggregation.png)
