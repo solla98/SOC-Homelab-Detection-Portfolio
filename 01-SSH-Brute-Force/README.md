@@ -43,6 +43,12 @@ This step mirrors the initial triage and investigation process performed by a SO
 ### Investigation Query
 ```spl
 index=main ("Failed password" OR "Accepted password") "sshd"
+| table _time src_ip user _raw
+```
+
+### Investigation Query-rex
+```spl
+index=main ("Failed password" OR "Accepted password") "sshd"
 | rex field=_raw "from (?<src_ip>\d+\.\d+\.\d+\.\d+)"
 | rex field=_raw "(Failed|Accepted) password for (invalid user )?(?<user>\S+)"
 | table _time src_ip user _raw
@@ -66,6 +72,14 @@ index=main "Failed password" "sshd"
 | bin _time span=1m
 | stats count by src_ip _time
 | where count >= 5
+```
+### Detection Query-rex
+```spl
+index=main "Failed password" "sshd"
+| rex field=_raw "from (?<src_ip>\d+\.\d+\.\d+\.\d+)"
+| bin _time span=1m
+| stats count as failed_attempts by src_ip _time
+| where failed_attempts >= 5
 ```
 
 ### Detection Logic
