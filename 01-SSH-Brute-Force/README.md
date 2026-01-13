@@ -63,10 +63,9 @@ Based on the investigation findings, a detection rule was created to automatical
 ### Detection Query
 ```spl
 index=main "Failed password" "sshd"
-| rex field=_raw "from (?<src_ip>\d+\.\d+\.\d+\.\d+)"
 | bin _time span=1m
-| stats count as failed_attempts by src_ip _time
-| where failed_attempts >= 5
+| stats count by src_ip _time
+| where count >= 5
 ```
 
 ### Detection Logic
@@ -89,8 +88,9 @@ The activity matches the expected behavior of an SSH brute force attack.
 - Continue monitoring for repeated SSH authentication failures
 
 ## Notes
-- Quotation marks (" ") were required in Splunk searches to correctly match exact log messages (not ' ').
-- Field extraction was performed using `rex` to enable structured analysis when default fields were not available.
+- Quotation marks (`" "`) were required in Splunk searches to correctly match exact log messages, as single quotes (`' '`) are treated differently in search syntax.
+- During the investigation phase, fields were extracted using `rex` to quickly analyze raw authentication logs.
+- For detection reuse and consistency, permanent field extractions were later configured using Splunk’s **Extract New Fields** feature.
 
 
 ## Screenshots
