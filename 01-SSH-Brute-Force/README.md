@@ -73,14 +73,6 @@ index=main "Failed password" "sshd"
 | stats count by src_ip _time
 | where count >= 5
 ```
-### Detection Query-rex
-```spl
-index=main "Failed password" "sshd"
-| rex field=_raw "from (?<src_ip>\d+\.\d+\.\d+\.\d+)"
-| bin _time span=1m
-| stats count as failed_attempts by src_ip _time
-| where failed_attempts >= 5
-```
 
 ### Detection Logic
 - Time window: 1 minute
@@ -128,7 +120,6 @@ Screenshots of Splunk search results and detection output can be found in the `s
 ### Detection Logic
 ![Detection Logic](screenshots/05_detection_query_aggregation.png)
 
-### Detection Logic - rex
-![Detection Logic](screenshots/05_detection_query_aggregation_rex.png)
+
 
 
