@@ -109,23 +109,20 @@ The activity aligns with expected patterns of post-authentication reconnaissance
 ## Screenshots
 Screenshots of Splunk search results and detection output can be found in the `screenshots/` directory.
 
-### Attack Simulation
-![Attack Simulation](screenshots/01_attack_simulation.png)
+### Attack Simulation-ssh login
+![Attack Simulation-ssh login](screenshots/01_ssh_login_admin_success.png)
 
-### SSH Authentication Logs
-![Auth log](screenshots/02_auth_log_failed_password.png)
+### Attack Simulation-command execution
+![Attack Simulation-command execution](screenshots/02_suspicious_command_execution.png)
 
-### Splunk Raw Events
-![Splunk Raw Events](screenshots/03_splunk_raw_events.png)
+### Victim Authentication Logs
+![Victim Authentication Logs](screenshots/03_sudo_suspicious_commands_log.png)
 
 ### Investigation Results 
-![Investigation Query](screenshots/04_investigation_query_results.png)
+![Investigation_Query](screenshots/04_splunk_investigation_broad_search.png)
 
-### Investigation Results - rex
-![Investigation Query](screenshots/04_investigation_query_results_rex.png)
-
-### Detection Logic
-![Detection Logic](screenshots/05_detection_query_aggregation.png)
+### Detection Results
+![Detection Results](screenshots/05_splunk_detection_suspicious_command_execution02.png)
 
 
 
