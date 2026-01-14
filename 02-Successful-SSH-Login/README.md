@@ -44,17 +44,12 @@ The attacker accessed the system as `admin` and maintained a session for approxi
 ## Screenshots
 
 
-### Attack Simulation-ssh login
-![Attack Simulation-ssh login](screenshots/01_ssh_login_admin_success.png)
+### Successful ssh login
+![Successful SSH Login](screenshots/01_successful_ssh_login_admin.png)
 
-### Attack Simulation-command execution
-![Attack Simulation-command execution](screenshots/02_suspicious_command_execution.png)
+### Victim-ssh session lifecycle observed
+![ssh_session_observed](screenshots/02_ssh_session_lifecycle_victim.png)
 
-### Victim Authentication Logs
-![Victim Authentication Logs](screenshots/03_sudo_suspicious_commands_log.png)
+### Splunk Analysis
+![splunk_analysis_ssh](screenshots/03_splunk_analysis_ssh_session_lifecycle_pid3334.png)
 
-### Investigation Results 
-![Investigation_Query](screenshots/04_splunk_investigation_broad_search.png)
-
-### Detection Results
-![Detection Results](screenshots/05_splunk_detection_suspicious_command_execution02.png)
