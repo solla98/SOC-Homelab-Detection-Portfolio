@@ -106,19 +106,16 @@ This scenario demonstrates how a SOC analyst can identify and investigate unauth
 
 
 ## Screenshots
-Screenshots of Splunk search results and detection output can be found in the `screenshots/` directory.
 
-### Attack Simulation-ssh login
-![Attack Simulation-ssh login](screenshots/01_ssh_login_admin_success.png)
+### User Privilege Verification (Non-Sudo Account)
+![user privilege verification](screenshots/01_before_evidence.png)
 
-### Attack Simulation-command execution
-![Attack Simulation-command execution](screenshots/02_suspicious_command_execution.png)
+### Unauthorized Sudo Command Execution Attempt
+![unauthorized sudo execution](screenshots/02_sudo_attempt.png)
 
-### Victim Authentication Logs
-![Victim Authentication Logs](screenshots/03_sudo_suspicious_commands_log.png)
+### Privilege Escalation Evidence in auth.log
+![Privilege Escalation Evidence](screenshots/03_sudo_attempt_log.png)
 
-### Investigation Results 
-![Investigation_Query](screenshots/04_splunk_investigation_broad_search.png)
+### Splunk Detection of Unauthorized Sudo Activity
+![splunk detection of unauthorized activity](screenshots/04_splunk_log.png)
 
-### Detection Results
-![Detection Results](screenshots/05_splunk_detection_suspicious_command_execution02.png)
