@@ -108,7 +108,7 @@ The activity aligns with expected reconnaissance patterns for network scanning.
 
 
 ## Screenshots
-Screenshots of Splunk search results and detection output can be found in the `screenshots/` directory.
+Screenshots of full search results and detection output can be found in the `screenshots/` directory.
 
 ### Attack Simulation - Port Scan
 ![Attack Simulation-port scan](screenshots/01_port_scan_attack.png)
