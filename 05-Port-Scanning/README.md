@@ -110,14 +110,17 @@ The activity aligns with expected reconnaissance patterns for network scanning.
 ## Screenshots
 Screenshots of Splunk search results and detection output can be found in the `screenshots/` directory.
 
-### Attack Simulation-ssh login
-![Attack Simulation-ssh login](screenshots/01_ssh_login_admin_success.png)
+### Attack Simulation - Port Scan
+![Attack Simulation-port scan](screenshots/01_port_scan_attack.png)
 
-### Attack Simulation-command execution
-![Attack Simulation-command execution](screenshots/02_suspicious_command_execution.png)
+### Victim UFW Raw Logs
+![Victim UFW Raw Logs](screenshots/02_ufw_log_evidence.png)
 
-### Victim Authentication Logs
-![Victim Authentication Logs](screenshots/03_sudo_suspicious_commands_log.png)
+### Splunk - Raw Event 
+![Raw Event](screenshots/04_splunk_raw_event.png)
 
-### Investigation Results 
-![Investigation_Query](screenshots/04_splunk_investigation_broad_search.png)
+### Splunk - Field Extraction Table
+![Field Extraction Table](screenshots/05_splunk_table_field.png)
+
+### Splunk - Detection Results - Stats View
+![Detection Results](screenshots/06_splunk_stats_table.png)
