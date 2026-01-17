@@ -99,17 +99,17 @@ This allowed accurate aggregation and statistical analysis of request volume, so
 
 ## Screenshots
 
-### Attack Simulation - Port Scan
-![Attack Simulation-port scan](screenshots/01_port_scan_attack.png)
+### Attack Simulation - Nikto
+![Attack Simulation-Nikto](screenshots/02_attacker_action.png)
 
-### Victim UFW Raw Logs
-![Victim UFW Raw Logs](screenshots/02_ufw_log_evidence.png)
+### Victim Log Evidence
+![Victim log evidence](screenshots/03_victim_log_evidence.png)
 
 ### Splunk - Raw Event 
 ![Raw Event](screenshots/04_splunk_raw_event.png)
 
-### Splunk - Field Extraction Table
-![Field Extraction Table](screenshots/05_splunk_table_field.png)
+### Splunk - clientIP
+![splunk-clientIP](screenshots/05_splunk_stats_count_by_clientip.png)
 
-### Splunk - Detection Results - Stats View
-![Detection Results](screenshots/06_splunk_stats_table.png)
+### Splunk - HTTP status code
+![splunk-HTTP status code](screenshots/06_splunk_stats_count_by_status.png)
